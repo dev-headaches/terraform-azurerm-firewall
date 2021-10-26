@@ -3,9 +3,9 @@ variable "enviro" {
   description = "define the environment ex. dev,tst,prd,stg"
 }
 
-variable "prjname" {
+variable "orgname" {
   type        = string
-  description = "define the project name ex. prj02"
+  description = "define the org name ex. acme"
 }
 
 variable "prjnum" {

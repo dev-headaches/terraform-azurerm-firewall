@@ -8,7 +8,7 @@ terraform {
 }
 
 resource "azurerm_firewall_policy" "firewall_policy" {
-  name                = format("%s%s%s%s", "fwp_hub_", var.prjname, var.enviro, var.prjnum)
+  name                = format("%s%s%s%s", "fwp_hub_", var.orgname, var.enviro, var.prjnum)
   resource_group_name = var.rgname
   location            = var.location
   sku                 = var.fwsku
