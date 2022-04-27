@@ -34,7 +34,7 @@ resource "azurerm_firewall" "firewall" {
   location            = var.location
   resource_group_name = var.rgname
   sku_tier            = var.fwsku
-  firewall_policy_id  = azurerm_firewall_policy.firewall_policy.id
+  firewall_policy_id  = var.firewall_policy_id #azurerm_firewall_policy.firewall_policy.id
   #depends_on = [
   #  azurerm_firewall_policy.firewall_policy #TF does a piss poor job of managing this association and it causes problems every time you have to make a config change, hence this is a last resort...
   #]
