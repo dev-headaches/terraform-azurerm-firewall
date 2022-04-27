@@ -1,3 +1,5 @@
+/* policy only
+
 variable "enviro" {
   type        = string
   description = "define the environment ex. dev,tst,prd,stg"
@@ -13,6 +15,34 @@ variable "prjnum" {
   description = "define the project number for TFstate file ex. 4858"
 }
 
+variable "dns_servers" {
+  type = list
+  description = "list of DNS resolvers - possibly domain controllers"
+}
+
+variable "ThreatIntelligence_Mode" {
+  type = string
+  description = "Alert, Deny, or Off"
+}
+
+variable "ThreatIntelligence_IP_Whitelist" {
+  type = list
+  description = "list of IP addresses that are whitelisted from Threat Intelligence"
+  default = []
+}
+
+variable "ThreatIntelligence_FQDN_Whitelist" {
+  type = list
+  description = "list of FQDNs that are whitelisted from Threat Intelligence"
+  default = []
+}
+
+*/
+
+variable "firewall_name" {
+  type = string
+  description = "the name of the firewall resource"
+}
 variable "location" {
   type        = string
   description = "location of your resource group"
@@ -38,29 +68,8 @@ variable "fwsku" {
   description = "Either 'Standard' or 'Premium' - this is the SKU type of the firewall"
 }
 
-variable "dns_servers" {
-  type = list
-  description = "list of DNS resolvers - possibly domain controllers"
-}
-
-variable "ThreatIntelligence_Mode" {
+## NEW VARIABLE (REMOVING POLICY)
+variable "firewall_policy_id" {
   type = string
-  description = "Alert, Deny, or Off"
-}
-
-variable "ThreatIntelligence_IP_Whitelist" {
-  type = list
-  description = "list of IP addresses that are whitelisted from Threat Intelligence"
-  default = []
-}
-
-variable "ThreatIntelligence_FQDN_Whitelist" {
-  type = list
-  description = "list of FQDNs that are whitelisted from Threat Intelligence"
-  default = []
-}
-
-variable "firewall_name" {
-  type = string
-  description = "the name of the firewall resource"
+  description = "the id of the Azure Firewall Policy by which the Azure Firewall will be governed."
 }

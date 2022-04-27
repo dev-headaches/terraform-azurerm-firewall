@@ -7,6 +7,7 @@ terraform {
   }
 }
 
+/* This must be deployed separately
 resource "azurerm_firewall_policy" "firewall_policy" {
   name                = format("%s%s%s%s", "fwp_hub_", var.orgname, var.enviro, var.prjnum)
   resource_group_name = var.rgname
@@ -26,6 +27,7 @@ resource "azurerm_firewall_policy" "firewall_policy" {
     mode = "Alert"
   }
 }
+*/
 
 resource "azurerm_firewall" "firewall" {
   name                = var.firewall_name
@@ -33,9 +35,9 @@ resource "azurerm_firewall" "firewall" {
   resource_group_name = var.rgname
   sku_tier            = var.fwsku
   firewall_policy_id  = azurerm_firewall_policy.firewall_policy.id
-  depends_on = [
-    azurerm_firewall_policy.firewall_policy #TF does a piss poor job of managing this association and it causes problems every time you have to make a config change, hence this is a last resort...
-  ]
+  #depends_on = [
+  #  azurerm_firewall_policy.firewall_policy #TF does a piss poor job of managing this association and it causes problems every time you have to make a config change, hence this is a last resort...
+  #]
 
   ip_configuration {
     name                 = format("%s%s", "ipcfg_", var.firewall_name)
